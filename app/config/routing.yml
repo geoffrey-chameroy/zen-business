@@ -1,0 +1,5 @@
+office:
+    resource: "@OfficeBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
