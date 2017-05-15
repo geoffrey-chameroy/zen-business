@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title 'Zen Business' %}</title>
+
+    <link href="{{ asset('Material/css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('Material/css/font/iconic/material-design-iconic-font.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('Material/css/app.min.css') }}" rel="stylesheet">
+
+    <script src="{{ asset('Material/js/page-loader.min.js') }}"></script>
+</head>
+
+<body>
+{{ include('OfficeBundle:Layout:loader.html.twig') }}
+{{ include('OfficeBundle:Layout:header.html.twig') }}
+
+<section id="main">
+    {{ ('OfficeBundle:Layout:notifications.html.twig') }}
+    {{ ('OfficeBundle:Layout:navigation.html.twig') }}
+
+    {% block body '' %}
+
+    {{ ('OfficeBundle:Layout:footer.html.twig') }}
+</section>
+
+<script src="{{ asset('Material/js/jquery-v2.1.4.min.js') }}"></script>
+<script src="{{ asset('Material/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('Material/js/app.min.js') }}"></script>
+</body>
+</html>
