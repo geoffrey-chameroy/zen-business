@@ -1,0 +1,45 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title parent() ~ ' - ' ~ 'client-list.meta-title'|trans %}
+
+{% block header %}
+    <section id="content">
+        <div class="content__header">
+            <h2>Clients</h2>
+        </div>
+    </section>
+{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div class="card__header">
+            <h2>Liste des clients</h2>
+        </div>
+
+        <div class="card__body">
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Company</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for client in clients %}
+                        <tr>
+                            <td>{{ client.id }}</td>
+                            <td>{{ client.company }}</td>
+                            <td>{{ client.name }}</td>
+                            <td>{{ client.address.city }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

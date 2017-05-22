@@ -1,0 +1,12 @@
+model: AppBundle\Entity\Client
+fixtures:
+    client_6pierres:
+        company: "6 Pierres Paysagères"
+        civility: civ_mr
+        name: "Sylvain Sagot"
+        address: addr_6pierres
+    client_ptitatelier:
+        company: "Ptit Atelier"
+        civility: civ_mrs
+        name: "Jessica Rocha"
+        address: addr_ptitatelier

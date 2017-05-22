@@ -1,0 +1,12 @@
+model: AppBundle\Entity\Address
+fixtures:
+    addr_6pierres:
+        address: "Les croix chemins"
+        zipCode: "28480"
+        city: "Saint Denis d'Authou"
+        country: "France"
+    addr_ptitatelier:
+        address: "32 av. des Etats Unis"
+        zipCode: "52000"
+        city: "Chaumont"
+        country: "France"

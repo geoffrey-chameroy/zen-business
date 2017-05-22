@@ -25,3 +25,7 @@ monolog:
 swiftmailer:
     disable_delivery: true
 #    delivery_addresses: ['me@example.com']#
+
+khepin_yaml_fixtures:
+    resources:
+        - AppBundle
