@@ -13,16 +13,17 @@
 </head>
 
 <body>
-{{ include('OfficeBundle:Layout:loader.html.twig') }}
-{{ include('OfficeBundle:Layout:header.html.twig') }}
+{{ include('AppBundle:Layout:loader.html.twig') }}
+{{ include('AppBundle:Layout:header.html.twig') }}
 
 <section id="main">
-    {{ ('OfficeBundle:Layout:notifications.html.twig') }}
-    {{ ('OfficeBundle:Layout:navigation.html.twig') }}
+    {{ include('AppBundle:Layout:notifications.html.twig') }}
+    {{ include('AppBundle:Layout:navigation.html.twig') }}
 
+    {% block header '' %}
     {% block body '' %}
 
-    {{ ('OfficeBundle:Layout:footer.html.twig') }}
+    {{ include('AppBundle:Layout:footer.html.twig') }}
 </section>
 
 <script src="{{ asset('Material/js/jquery-v2.1.4.min.js') }}"></script>

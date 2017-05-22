@@ -1,9 +1,9 @@
 <?php
 
-namespace OfficeBundle;
+namespace AppBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class OfficeBundle extends Bundle
+class AppBundle extends Bundle
 {
 }

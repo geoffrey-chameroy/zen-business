@@ -1,0 +1,10 @@
+model: AppBundle\Entity\Civility
+fixtures:
+    civ_mr:
+        id: 1
+        label: "Monsieur"
+        code: "Mr"
+    civ_mrs:
+        id: 2
+        label: "Madame"
+        code: "Mme"
