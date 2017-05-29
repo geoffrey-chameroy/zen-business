@@ -1,0 +1,22 @@
+model: AppBundle\Entity\Invoice
+fixtures:
+    invoice_001:
+        numerous: 1
+        reference: "F1701-001"
+        date: "2017-01-01"
+        client: client_001
+    invoice_002:
+        numerous: 2
+        reference: "F1701-002"
+        date: "2017-01-01"
+        client: client_002
+    invoice_003:
+        numerous: 3
+        reference: "F1702-003"
+        date: "2017-02-01"
+        client: client_001
+    invoice_004:
+        numerous: 4
+        reference: "F1702-004"
+        date: "2017-02-01"
+        client: client_002

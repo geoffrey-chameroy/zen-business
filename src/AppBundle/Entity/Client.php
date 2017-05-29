@@ -46,6 +46,11 @@ class Client
     private $address;
 
     /**
+     * @ORM\OneToMany(targetEntity="Invoice", mappedBy="client")
+     */
+    private $invoices;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="inserted_at", type="datetime")
@@ -185,5 +190,39 @@ class Client
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * Add invoice
+     *
+     * @param \AppBundle\Entity\Invoice $invoice
+     *
+     * @return Client
+     */
+    public function addInvoice(\AppBundle\Entity\Invoice $invoice)
+    {
+        $this->invoices[] = $invoice;
+
+        return $this;
+    }
+
+    /**
+     * Remove invoice
+     *
+     * @param \AppBundle\Entity\Invoice $invoice
+     */
+    public function removeInvoice(\AppBundle\Entity\Invoice $invoice)
+    {
+        $this->invoices->removeElement($invoice);
+    }
+
+    /**
+     * Get invoices
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInvoices()
+    {
+        return $this->invoices;
     }
 }

@@ -1,0 +1,6 @@
+model: AppBundle\Entity\ActivityCategory
+fixtures:
+    activity_category_001:
+        label: "Développement web"
+    activity_category_002:
+        label: "Hébergement web"

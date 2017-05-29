@@ -1,0 +1,51 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title parent() ~ ' - ' ~ 'invoice-list.meta-title'|trans %}
+
+{% block header %}
+    <section id="content">
+        <div class="content__header">
+            <h2>Factures</h2>
+        </div>
+    </section>
+{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div class="card__header">
+            <h2>Liste des factures</h2>
+        </div>
+
+        <div class="card__body">
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Référence</th>
+                        <th>Client</th>
+                        <th class="text-right">Montant</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for invoice in invoices %}
+                        <tr>
+                            <td>{{ invoice.id }}</td>
+                            <td>{{ invoice.date|date('d/m/Y') }}</td>
+                            <td>{{ invoice.reference }}</td>
+                            <td>{{ invoice.client.company }}</td>
+                            <td class="text-right">{{ invoice.amount|number_format(2, ',', ' ') }} €</td>
+                            <td class="text-right">
+                                <a class="btn btn--light">Détails</a>
+                                <a class="btn btn-default"><i class="zmdi zmdi-download"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

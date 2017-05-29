@@ -1,12 +1,12 @@
 model: AppBundle\Entity\Client
 fixtures:
-    client_6pierres:
+    client_001:
         company: "6 Pierres Paysagères"
-        civility: civ_mr
+        civility: civility_001
         name: "Sylvain Sagot"
-        address: addr_6pierres
-    client_ptitatelier:
+        address: address_001
+    client_002:
         company: "Ptit Atelier"
-        civility: civ_mrs
+        civility: civility_002
         name: "Jessica Rocha"
-        address: addr_ptitatelier
+        address: address_002
