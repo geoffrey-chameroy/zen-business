@@ -1,0 +1,18 @@
+model: AppBundle\Entity\Activity
+fixtures:
+    activity_001:
+        label: "Développement site web vitrine"
+        price: 1000
+        category: activity_category_001
+    activity_002:
+        label: "Développement d'un blog"
+        price: 1000
+        category: activity_category_001
+    activity_003:
+        label: "Développement d'une boutique en ligne"
+        price: 2500
+        category: activity_category_001
+    activity_004:
+        label: "Hébergement de site web en ligne"
+        price: 25
+        category: activity_category_001

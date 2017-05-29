@@ -1,0 +1,27 @@
+model: AppBundle\Entity\InvoiceActivity
+fixtures:
+    invoice_activity_001:
+        invoice: invoice_001
+        activity: activity_001
+        price: 500
+        quantity: 1
+    invoice_activity_002:
+        invoice: invoice_001
+        activity: activity_004
+        price: 15
+        quantity: 1
+    invoice_activity_003:
+        invoice: invoice_002
+        activity: activity_004
+        price: 5
+        quantity: 1
+    invoice_activity_004:
+        invoice: invoice_003
+        activity: activity_004
+        price: 15
+        quantity: 1
+    invoice_activity_005:
+        invoice: invoice_004
+        activity: activity_004
+        price: 5
+        quantity: 1
