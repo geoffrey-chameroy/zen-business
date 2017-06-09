@@ -141,7 +141,7 @@ class Activity
      *
      * @return Activity
      */
-    public function setCategory(\AppBundle\Entity\ActivityCategory $category = null)
+    public function setCategory(ActivityCategory $category = null)
     {
         $this->category = $category;
 

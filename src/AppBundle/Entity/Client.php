@@ -46,7 +46,7 @@ class Client
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="Invoice", mappedBy="client")
+     * @ORM\OneToMany(targetEntity="Invoice", mappedBy="client", cascade={"remove"})
      */
     private $invoices;
 
@@ -151,7 +151,7 @@ class Client
      *
      * @return Client
      */
-    public function setCivility(\AppBundle\Entity\Civility $civility = null)
+    public function setCivility(Civility $civility = null)
     {
         $this->civility = $civility;
 
@@ -175,7 +175,7 @@ class Client
      *
      * @return Client
      */
-    public function setAddress(\AppBundle\Entity\Address $address = null)
+    public function setAddress(Address $address = null)
     {
         $this->address = $address;
 
@@ -199,7 +199,7 @@ class Client
      *
      * @return Client
      */
-    public function addInvoice(\AppBundle\Entity\Invoice $invoice)
+    public function addInvoice(Invoice $invoice)
     {
         $this->invoices[] = $invoice;
 
@@ -211,7 +211,7 @@ class Client
      *
      * @param \AppBundle\Entity\Invoice $invoice
      */
-    public function removeInvoice(\AppBundle\Entity\Invoice $invoice)
+    public function removeInvoice(Invoice $invoice)
     {
         $this->invoices->removeElement($invoice);
     }
