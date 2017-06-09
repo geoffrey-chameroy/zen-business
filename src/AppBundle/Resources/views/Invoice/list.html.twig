@@ -12,11 +12,11 @@
 
 {% block body %}
     <div class="card">
-        <div class="card__header">
-            <h2>Liste des factures</h2>
+        <div class="card__header action-header">
+            <div class="action-header__label">Liste des factures</div>
+            <a href="{{ path('invoices_add') }}" class="btn btn--float"><i class="zmdi zmdi-plus"></i></a>
         </div>
-
-        <div class="card__body">
+        <div class="card__body m-t-30">
             <div class="table-responsive">
                 <table class="table table-condensed">
                     <thead>
@@ -39,7 +39,7 @@
                             <td class="text-right">{{ invoice.amount|number_format(2, ',', ' ') }} €</td>
                             <td class="text-right">
                                 <a class="btn btn--light">Détails</a>
-                                <a class="btn btn-default"><i class="zmdi zmdi-download"></i></a>
+                                <a target="_blank" class="btn btn-default"><i class="zmdi zmdi-download"></i></a>
                             </td>
                         </tr>
                     {% endfor %}

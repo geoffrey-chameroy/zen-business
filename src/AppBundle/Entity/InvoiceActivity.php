@@ -111,7 +111,7 @@ class InvoiceActivity
      *
      * @return InvoiceActivity
      */
-    public function setInvoice(\AppBundle\Entity\Invoice $invoice = null)
+    public function setInvoice(Invoice $invoice = null)
     {
         $this->invoice = $invoice;
 
@@ -135,7 +135,7 @@ class InvoiceActivity
      *
      * @return InvoiceActivity
      */
-    public function setActivity(\AppBundle\Entity\Activity $activity = null)
+    public function setActivity(Activity $activity = null)
     {
         $this->activity = $activity;
 

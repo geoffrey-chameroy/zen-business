@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,11 +52,12 @@ class Invoice
 
     /**
      * @ORM\ManyToOne(targetEntity="Client", inversedBy="invoices")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $client;
 
     /**
-     * @ORM\OneToMany(targetEntity="InvoiceActivity", mappedBy="invoice")
+     * @ORM\OneToMany(targetEntity="InvoiceActivity", mappedBy="invoice", cascade={"persist", "remove"})
      */
     private $activities;
 
@@ -69,6 +71,8 @@ class Invoice
     public function __construct()
     {
         $this->insertedAt = new \DateTime();
+        $this->date = new \DateTime();
+        $this->activities = new ArrayCollection();
     }
 
     /**
@@ -208,8 +212,9 @@ class Invoice
      *
      * @return Invoice
      */
-    public function addActivity(\AppBundle\Entity\InvoiceActivity $activity)
+    public function addActivity(InvoiceActivity $activity)
     {
+        $activity->setInvoice($this);
         $this->activities[] = $activity;
 
         return $this;
@@ -220,7 +225,7 @@ class Invoice
      *
      * @param \AppBundle\Entity\InvoiceActivity $activity
      */
-    public function removeActivity(\AppBundle\Entity\InvoiceActivity $activity)
+    public function removeActivity(InvoiceActivity $activity)
     {
         $this->activities->removeElement($activity);
     }
@@ -242,7 +247,7 @@ class Invoice
      *
      * @return Invoice
      */
-    public function setClient(\AppBundle\Entity\Client $client = null)
+    public function setClient(Client $client)
     {
         $this->client = $client;
 

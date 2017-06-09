@@ -12,34 +12,36 @@
 
 {% block body %}
     <div class="card">
-        <div class="card__header">
-            <h2>Liste des clients</h2>
+        <div class="card__header action-header">
+            <div class="action-header__label">Liste des clients</div>
+            <button class="btn btn--float"><i class="zmdi zmdi-plus"></i></button>
         </div>
-
-        <div class="card__body">
-            <div class="table-responsive">
-                <table class="table table-condensed">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Company</th>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for client in clients %}
+        <div class="card__body m-t-30">
+            <div class="card__body">
+                <div class="table-responsive">
+                    <table class="table table-condensed">
+                        <thead>
                         <tr>
-                            <td>{{ client.id }}</td>
-                            <td>{{ client.company }}</td>
-                            <td>{{ client.name }}</td>
-                            <td>{{ client.address.city }}</td>
-                            <td></td>
+                            <th>#</th>
+                            <th>Company</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Actions</th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        {% for client in clients %}
+                            <tr>
+                                <td>{{ client.id }}</td>
+                                <td>{{ client.company }}</td>
+                                <td>{{ client.name }}</td>
+                                <td>{{ client.address.city }}</td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
