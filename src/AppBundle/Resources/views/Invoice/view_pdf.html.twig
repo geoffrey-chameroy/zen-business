@@ -1,0 +1,125 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{ invoice.reference }}.pdf</title>
+    <style>
+        {% include 'AppBundle::Invoice/pdf.min.css' %}
+    </style>
+</head>
+<body>
+<div class="row">
+    <div class="col-12">
+        <p>
+            <strong>Geoffrey Chameroy</strong>
+            <br>52800 Foulain
+            <br>06 45 99 09 72
+            <br>contact@geoffrey-chameroy.fr
+            <br>
+            <br>Siret : 53976069400023
+            <br>NAF : 6201Z
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h1>FACTURE</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="row">
+            <div class="col-4 text-right">
+                <strong>FACTURE N°</strong>
+            </div>
+            <div class="col-8">{{ invoice.reference }} </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                <strong>DATE</strong>
+            </div>
+            <div class="col-8">{{ invoice.date|localizeddate('short', 'none') }}</div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                <strong>ÉCHÉANCE</strong>
+            </div>
+            <div class="col-8">{{ invoice.dueAt|localizeddate('short', 'none') }}</div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                <strong>CONDITIONS</strong>
+            </div>
+            <div class="col-8">Net 30</div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-4">
+        <p>
+            <strong>FACTURER À</strong>
+            <br>{{ invoice.client.civility.label ~ ' ' ~ invoice.client.name }}
+            {% if invoice.client.company %}
+                <br>{{ invoice.client.company }}
+            {% endif %}
+            <br>{{ invoice.client.address.address }}
+            <br>{{ invoice.client.address.zipCode ~ ' ' ~ invoice.client.address.city }}
+            <br>{{ invoice.client.address.country }}
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr>
+    </div>
+</div>
+<div class="row m-t">
+    <div class="col-12">
+        <table class="table m-b">
+            <thead>
+            <tr>
+                <th class="text-left">ACTIVITÉ</th>
+                <th class="text-right">QTÉ</th>
+                <th class="text-right">TAUX</th>
+                <th class="text-right">MONTANT</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for invoiceActivity in invoice.activities %}
+                <tr>
+                    <td>
+                        <strong>{{ invoiceActivity.activity.category.label }}</strong>
+                        <br>{{ invoiceActivity.activity.label }}
+                    </td>
+                    <td class="text-right">{{ invoiceActivity.quantity }}</td>
+                    <td class="text-right">{{ invoiceActivity.price|number_format(2, ',', ' ') }}</td>
+                    <td class="text-right">{{ invoiceActivity.amount|number_format(2, ',', ' ') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col-7"></div>
+    <div class="col-5">
+        <div class="row">
+            <div class="col-6 text-right">SOLDE À PAYER</div>
+            <div class="col-6 text-right"><h2>
+                    <strong>{{ invoice.amount|localizedcurrency(invoice.currency) }}</strong></h2></div>
+            <p class="text-right">
+                <small><em>T.V.A. non applicable, article 293B du CGI</em></small>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row m-t">
+    <div class="col-12">
+        <p class="text-left">Pénalités de retard (taux annuel) : 12,00 %
+            <br>Indemnité forfaitaire pour frais de recouvrement en cas de retard de paiement : 40,00 €</p>
+    </div>
+</div>
+</body>

@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class InvoiceController extends Controller
 {
@@ -55,5 +56,45 @@ class InvoiceController extends Controller
         return $this->render('AppBundle:Invoice:add.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @Route(
+     *     "/office/invoice/{reference}.{_format}", name="office_invoice_view",
+     *     defaults={"_format": "html"},
+     *     requirements={
+     *          "_format": "html|pdf"
+     *     }
+     * )
+     * @param $reference
+     * @param $_format
+     * @return BinaryFileResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function invoiceViewAction($reference, $_format)
+    {
+        $invoice = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Invoice')
+            ->findOneByReference($reference);
+
+        switch ($_format) {
+            default:
+            case 'html':
+                return $this->render('AppBundle::Invoice/view.html.twig', array(
+                    'invoice' => $invoice
+                ));
+            case 'pdf':
+                $html = $this->renderView('AppBundle::Invoice/view_pdf.html.twig', array(
+                    'invoice' => $invoice
+                ));
+
+                return new Response(
+                    $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+                    200,
+                    array(
+                        'Content-Type' => 'application/pdf',
+                        'Content-Disposition' => 'filename="' . $invoice->getReference() . '.pdf"'
+                    )
+                );
+        }
     }
 }

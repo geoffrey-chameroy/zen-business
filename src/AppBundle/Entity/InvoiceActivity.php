@@ -151,4 +151,14 @@ class InvoiceActivity
     {
         return $this->activity;
     }
+
+    /**
+     * Get amount
+     *
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->quantity * $this->price;
+    }
 }

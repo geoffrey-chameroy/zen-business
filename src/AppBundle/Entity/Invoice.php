@@ -273,9 +273,29 @@ class Invoice
     {
         $amount = 0;
         foreach ($this->activities as $activity) {
-            $amount += $activity->getPrice() * $activity->getQuantity();
+            $amount += $activity->getAmount();
         }
 
         return $amount;
+    }
+
+    /**
+     * Get dueAt
+     *
+     * @return \DateTime
+     */
+    public function getDueAt()
+    {
+        return $this->date->add(new \DateInterval('P30D'));
+    }
+
+    /**
+     * Get currency
+     *
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return 'EUR';
     }
 }
