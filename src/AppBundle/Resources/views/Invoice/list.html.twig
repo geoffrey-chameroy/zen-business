@@ -39,7 +39,9 @@
                             <td class="text-right">{{ invoice.amount|number_format(2, ',', ' ') }} €</td>
                             <td class="text-right">
                                 <a class="btn btn--light">Détails</a>
-                                <a target="_blank" href="{{ path('office_invoice_view', {reference: invoice.Reference, _format: 'pdf'}) }}" class="btn btn-default">PDF</a>
+                                <a target="_blank" href="{{ path('office_invoice_view', {reference: invoice.Reference, _format: 'pdf'}) }}" class="btn btn-default">
+                                    <i class="zmdi zmdi-download"></i>
+                                </a>
                             </td>
                         </tr>
                     {% endfor %}

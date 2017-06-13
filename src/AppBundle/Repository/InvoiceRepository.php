@@ -12,6 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class InvoiceRepository extends EntityRepository
 {
+    public function findAll()
+    {
+        return $this->findBy([], ['id' => 'desc']);
+    }
+
     public function getLastInvoice(\DateTime $date)
     {
         return $this->createQueryBuilder('i')
