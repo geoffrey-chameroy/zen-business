@@ -9,8 +9,10 @@ use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class InvoiceController extends Controller
 {
@@ -63,7 +65,7 @@ class InvoiceController extends Controller
      *     "/office/invoice/{reference}.{_format}", name="office_invoice_view",
      *     defaults={"_format": "html"},
      *     requirements={
-     *          "_format": "html|pdf"
+     *          "_format": "pdf"
      *     }
      * )
      * @param $reference
@@ -76,9 +78,12 @@ class InvoiceController extends Controller
             ->getRepository('AppBundle:Invoice')
             ->findOneByReference($reference);
 
+        if (!$invoice) {
+            throw new NotFoundHttpException('Invoice not found');
+        }
+
         switch ($_format) {
             default:
-            case 'html':
                 return $this->render('AppBundle::Invoice/view.html.twig', array(
                     'invoice' => $invoice
                 ));
@@ -89,11 +94,10 @@ class InvoiceController extends Controller
 
                 return new Response(
                     $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-                    200,
-                    array(
-                        'Content-Type' => 'application/pdf',
+                    200, [
+                        'Content-Type' => 'mime/type',
                         'Content-Disposition' => 'filename="' . $invoice->getReference() . '.pdf"'
-                    )
+                    ]
                 );
         }
     }
