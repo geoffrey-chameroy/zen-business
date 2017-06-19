@@ -51,6 +51,11 @@ class Client
     private $invoices;
 
     /**
+     * @ORM\OneToMany(targetEntity="Quotation", mappedBy="client", cascade={"remove"})
+     */
+    private $quotations;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="inserted_at", type="datetime")
@@ -224,5 +229,39 @@ class Client
     public function getInvoices()
     {
         return $this->invoices;
+    }
+
+    /**
+     * Add quotation
+     *
+     * @param \AppBundle\Entity\Quotation $quotation
+     *
+     * @return Client
+     */
+    public function addQuotation(\AppBundle\Entity\Quotation $quotation)
+    {
+        $this->quotations[] = $quotation;
+
+        return $this;
+    }
+
+    /**
+     * Remove quotation
+     *
+     * @param \AppBundle\Entity\Quotation $quotation
+     */
+    public function removeQuotation(\AppBundle\Entity\Quotation $quotation)
+    {
+        $this->quotations->removeElement($quotation);
+    }
+
+    /**
+     * Get quotations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuotations()
+    {
+        return $this->quotations;
     }
 }

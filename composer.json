@@ -26,6 +26,7 @@
         "doctrine/orm": "^2.5",
         "incenteev/composer-parameter-handler": "^2.0",
         "khepin/yaml-fixtures-bundle": "^1.0",
+        "knplabs/knp-markdown-bundle": "^1.5",
         "knplabs/knp-snappy": "^0.4.3",
         "knplabs/knp-snappy-bundle": "^1.4",
         "ninsuo/symfony-collection": "^2.1",
