@@ -18,9 +18,21 @@ class ReferenceGenerator
     {
         $invoice = $this->em->getRepository('AppBundle:Invoice')
             ->getLastInvoice($date);
-        $num = $invoice !== null ? $invoice->getNumerous() + 1 : 1;
+        $num = $invoice ? $invoice->getNumerous() + 1 : 1;
         $ref = 'F' . $date->format('ym') . '-' . str_pad($num, '3', '0', STR_PAD_LEFT);
 
+        $reference = new Reference();
+
+        return $reference->setNumerous($num)
+            ->setReference($ref);
+    }
+
+    public function getNextQuotationNumerous(\DateTime $date)
+    {
+        $quotation = $this->em->getRepository('AppBundle:Quotation')
+            ->getLastQuotation($date);
+        $num = $quotation ? $quotation->getNumerous() + 1 : 1;
+        $ref = 'D' . $date->format('ym') . '-' . str_pad($num, '3', '0', STR_PAD_LEFT);
         $reference = new Reference();
 
         return $reference->setNumerous($num)

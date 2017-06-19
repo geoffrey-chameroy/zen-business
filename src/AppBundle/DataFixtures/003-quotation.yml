@@ -1,0 +1,16 @@
+model: AppBundle\Entity\Quotation
+fixtures:
+    quotation_001:
+        numerous: 1
+        reference: "D1701-001"
+        date: "2017-01-01"
+        client: client_001
+        amount: 500
+        description: "**Création d'un site web**"
+    quotation_002:
+        numerous: 2
+        reference: "D1701-002"
+        date: "2017-01-01"
+        client: client_002
+        amount: 50
+        description: "**Création d'un blog**"

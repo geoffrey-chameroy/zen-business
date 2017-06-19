@@ -1,0 +1,100 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{{ quotation.reference }}.pdf</title>
+    <style>
+        {% include 'AppBundle::quotation/pdf.min.css' %}
+    </style>
+</head>
+<body>
+<div class="row">
+    <div class="col-12">
+        <p>
+            <strong>Geoffrey Chameroy</strong>
+            <br>52800 Foulain
+            <br>06 45 99 09 72
+            <br>contact@geoffrey-chameroy.fr
+            <br>
+            <br>Siret : 53976069400023
+            <br>NAF : 6201Z
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h1>DEVIS</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="row">
+            <div class="col-4 text-right">
+                <strong>DEVIS N°</strong>
+            </div>
+            <div class="col-8">{{ quotation.reference }} </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-right">
+                <strong>DATE</strong>
+            </div>
+            <div class="col-8">{{ quotation.date|localizeddate('short', 'none') }}</div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-4">
+        <p>
+            <strong>FACTURER À</strong>
+            <br>{{ quotation.client.civility.label ~ ' ' ~ quotation.client.name }}
+            {% if quotation.client.company %}
+                <br>{{ quotation.client.company }}
+            {% endif %}
+            <br>{{ quotation.client.address.address }}
+            <br>{{ quotation.client.address.zipCode ~ ' ' ~ quotation.client.address.city }}
+            <br>{{ quotation.client.address.country }}
+        </p>
+    </div>
+</div>
+<div class="row m-t">
+    <div class="col-12">
+        <table class="table m-b">
+            <thead>
+            <tr>
+                <th class="text-left">PRESTATIONS</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ quotation.description|nl2br|markdown }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6"></div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-6 text-right">SOLDE À PAYER</div>
+            <div class="col-6 text-right"><h2><strong>{{ quotation.amount|localizedcurrency(quotation.currency) }}</strong></h2></div>
+            <p class="text-right">
+                <small><em>T.V.A. non applicable, article 293B du CGI</em></small>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row m-t">
+    <div class="col-12">
+        <p class="text-left"><strong>Devis valable deux mois à compter de sa date d'émission</strong></p>
+        <p class="text-left"><strong>Détails des versements</strong>
+            <br> - 50% à la commande : {{ (quotation.amount / 2)|localizedcurrency(quotation.currency) }}
+            <br> - 50% à réception : {{ (quotation.amount / 2)|localizedcurrency(quotation.currency) }}</p>
+        <p class="text-left"><strong>Signature du client</strong>
+            <br>Précédé de la mention "Lu et approuvé"</p>
+    </div>
+</div>
+</body>
