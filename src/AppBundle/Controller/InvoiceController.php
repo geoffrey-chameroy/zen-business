@@ -62,7 +62,7 @@ class InvoiceController extends Controller
 
     /**
      * @Route(
-     *     "/office/invoice/{reference}.{_format}", name="office_invoice_view",
+     *     "/office/invoice/{reference}.{_format}", name="invoices_view",
      *     defaults={"_format": "html"},
      *     requirements={
      *          "_format": "pdf"
