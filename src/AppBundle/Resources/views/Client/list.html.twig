@@ -26,7 +26,7 @@
                             <th>Company</th>
                             <th>Name</th>
                             <th>Address</th>
-                            <th>Actions</th>
+                            <th class="text-right">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,7 +36,11 @@
                                 <td>{{ client.company }}</td>
                                 <td>{{ client.name }}</td>
                                 <td>{{ client.address.city }}</td>
-                                <td></td>
+                                <td class="text-right">
+                                    <a href="{{ path('clients_edit', {'id': client.id}) }}" class="btn btn-default">
+                                        <i class="zmdi zmdi-edit"></i>
+                                    </a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
