@@ -1,0 +1,31 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title parent() ~ ' - ' ~ 'client-add.meta-title'|trans %}
+
+{% block header %}
+    <section id="content">
+        <div class="content__header">
+            <h2>Clients</h2>
+        </div>
+    </section>
+{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div class="card__header action-header">
+            <div class="action-header__label">Ajouter un client</div>
+        </div>
+        <div class="card__body m-t-30">
+            {{ form_start(form) }}
+            {{ form_row(form.civility) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.company) }}
+            {{ form_row(form.address.address) }}
+            {{ form_row(form.address.zipCode) }}
+            {{ form_row(form.address.city) }}
+            {{ form_row(form.address.country) }}
+            <button class="btn btn-default btn-block" type="submit">Ajouter</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

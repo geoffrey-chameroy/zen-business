@@ -41,7 +41,7 @@ class Client
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Address")
+     * @ORM\ManyToOne(targetEntity="Address", cascade={"persist", "remove"})
      */
     private $address;
 
