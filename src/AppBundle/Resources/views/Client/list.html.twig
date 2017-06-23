@@ -37,6 +37,7 @@
                                 <td>{{ client.name }}</td>
                                 <td>{{ client.address.city }}</td>
                                 <td class="text-right">
+                                    <a href="{{ path('clients_view', {'id': client.id}) }}" class="btn btn--light">Détails</a>
                                     <a href="{{ path('clients_edit', {'id': client.id}) }}" class="btn btn-default">
                                         <i class="zmdi zmdi-edit"></i>
                                     </a>

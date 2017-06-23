@@ -6,9 +6,11 @@ use AppBundle\Entity\Client;
 use AppBundle\Form\Type\ClientType;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ClientController extends Controller
@@ -16,10 +18,12 @@ class ClientController extends Controller
     /**
      * @Route("/clients", name="clients_list")
      * @Method({"GET"})
+     * @param EntityManager $em
+     * @return Response
      */
-    public function indexAction()
+    public function indexAction(EntityManager $em)
     {
-        $clients = $this->getDoctrine()->getRepository('AppBundle:Client')
+        $clients = $em->getRepository('AppBundle:Client')
             ->findAll();
 
         return $this->render('AppBundle:Client:list.html.twig', [
@@ -32,7 +36,7 @@ class ClientController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param EntityManager $em
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
     public function addAction(Request $request, EntityManager $em)
     {
@@ -58,11 +62,11 @@ class ClientController extends Controller
      * @param $id
      * @param Request $request
      * @param EntityManager $em
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
     public function editAction($id, Request $request, EntityManager $em)
     {
-        $client = $this->getDoctrine()->getManager()
+        $client = $em
             ->getRepository('AppBundle:Client')
             ->find($id);
 
@@ -82,6 +86,28 @@ class ClientController extends Controller
 
         return $this->render('AppBundle:Client:edit.html.twig', array(
             'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/clients/view/{id}", name="clients_view")
+     * @Method({"GET"})
+     * @param $id
+     * @param EntityManager $em
+     * @return Response
+     */
+    public function viewAction($id, EntityManager $em)
+    {
+        $client = $em
+            ->getRepository('AppBundle:Client')
+            ->find($id);
+
+        if (!$client) {
+            throw new NotFoundHttpException('Client not found');
+        }
+
+        return $this->render('AppBundle:Client:view.html.twig', array(
+            'client' => $client
         ));
     }
 }

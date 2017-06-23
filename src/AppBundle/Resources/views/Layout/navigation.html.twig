@@ -20,7 +20,7 @@
             <li class="{% if app.request.attributes.get('_route') in ['home'] %}navigation__active{% endif %}">
                 <a href="{{ path('home') }}"><i class="zmdi zmdi-home"></i> Home</a>
             </li>
-            <li class="{% if app.request.attributes.get('_route') in ['clients_list'] %}navigation__active{% endif %}">
+            <li class="{% if app.request.attributes.get('_route') in ['clients_list', 'clients_add', 'clients_edit', 'clients_view'] %}navigation__active{% endif %}">
                 <a href="{{ path('clients_list') }}"><i class="zmdi zmdi-accounts"></i> Clients</a>
             </li>
             <li class="{% if app.request.attributes.get('_route') in ['quotations_list', 'quotations_add', 'quotations_view'] %}navigation__active{% endif %}">
