@@ -1,0 +1,28 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title parent() ~ ' - ' ~ 'client-view.meta-title'|trans %}
+
+{% block header %}
+    <section id="content">
+        <div class="content__header">
+            <h2>Clients</h2>
+        </div>
+    </section>
+{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div class="card__header action-header">
+            <div class="action-header__label">{{ client.name }}</div>
+            <a href="{{ path('clients_list') }}" class="btn btn--float"><i class="zmdi zmdi-arrow-back"></i></a>
+        </div>
+        <div class="card__body m-t-30">
+            <p>{{ client.civility.code }} {{ client.name }}
+                <br>{{ client.company }}
+                <br>
+                <br>{{ client.address.Address }}
+                <br>{{ client.address.zipCode }} {{ client.address.city }}
+                <br>{{ client.address.country }}</p>
+        </div>
+    </div>
+{% endblock %}

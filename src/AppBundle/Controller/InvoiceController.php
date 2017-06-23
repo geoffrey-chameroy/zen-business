@@ -7,8 +7,8 @@ use AppBundle\Form\Type\InvoiceType;
 use AppBundle\Service\ReferenceGenerator;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +19,7 @@ class InvoiceController extends Controller
     /**
      * @Route("/invoices", name="invoices_list")
      * @Method({"GET"})
+     * @return Response
      */
     public function indexAction()
     {
@@ -36,7 +37,7 @@ class InvoiceController extends Controller
      * @param ReferenceGenerator $referenceGenerator
      * @param Request $request
      * @param EntityManager $em
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
     public function addAction(ReferenceGenerator $referenceGenerator, Request $request, EntityManager $em)
     {
@@ -70,11 +71,12 @@ class InvoiceController extends Controller
      * )
      * @param $reference
      * @param $_format
-     * @return BinaryFileResponse|\Symfony\Component\HttpFoundation\Response
+     * @param EntityManager $em
+     * @return BinaryFileResponse|Response
      */
-    public function invoiceViewAction($reference, $_format)
+    public function invoiceViewAction($reference, $_format, EntityManager $em)
     {
-        $invoice = $this->getDoctrine()->getManager()
+        $invoice = $em
             ->getRepository('AppBundle:Invoice')
             ->findOneByReference($reference);
 
