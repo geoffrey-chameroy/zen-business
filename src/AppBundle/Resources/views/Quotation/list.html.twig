@@ -39,7 +39,7 @@
                             <td class="text-right">{{ quotation.amount|number_format(2, ',', ' ') }} €</td>
                             <td class="text-right">
                                 <a class="btn btn--light">Détails</a>
-                                <a target="_blank" href="{{ path('office_quotation_view', {reference: quotation.reference, _format: 'pdf'}) }}" class="btn btn-default">
+                                <a target="_blank" href="{{ path('quotations_view', {reference: quotation.reference, _format: 'pdf'}) }}" class="btn btn-default">
                                     <i class="zmdi zmdi-download"></i>
                                 </a>
                             </td>

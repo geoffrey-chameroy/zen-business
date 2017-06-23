@@ -17,17 +17,17 @@
 
     <div class="navigation__menu c-overflow">
         <ul>
-            <li class="navigation__active">
+            <li class="{% if app.request.attributes.get('_route') in ['home'] %}navigation__active{% endif %}">
                 <a href="{{ path('home') }}"><i class="zmdi zmdi-home"></i> Home</a>
             </li>
-            <li>
+            <li class="{% if app.request.attributes.get('_route') in ['clients_list'] %}navigation__active{% endif %}">
                 <a href="{{ path('clients_list') }}"><i class="zmdi zmdi-accounts"></i> Clients</a>
             </li>
-            <li>
-                <a href="{{ path('invoices_list') }}"><i class="zmdi zmdi-file-text"></i> Factures</a>
+            <li class="{% if app.request.attributes.get('_route') in ['quotations_list', 'quotations_add', 'quotations_view'] %}navigation__active{% endif %}">
+                <a href="{{ path('quotations_list') }}"><i class="zmdi zmdi-assignment"></i> Devis</a>
             </li>
-            <li>
-                <a href="{{ path('quotations_list') }}"><i class="zmdi zmdi-file-text"></i> Devis</a>
+            <li class="{% if app.request.attributes.get('_route') in ['invoices_list', 'invoices_add', 'invoices_view'] %}navigation__active{% endif %}">
+                <a href="{{ path('invoices_list') }}"><i class="zmdi zmdi-file-text"></i> Factures</a>
             </li>
         </ul>
     </div>

@@ -62,7 +62,7 @@ class QuotationController extends Controller
 
     /**
      * @Route(
-     *     "/office/quotation/{reference}.{_format}", name="office_quotation_view",
+     *     "/office/quotation/{reference}.{_format}", name="quotations_view",
      *     defaults={"_format": "html"},
      *     requirements={
      *          "_format": "pdf"
