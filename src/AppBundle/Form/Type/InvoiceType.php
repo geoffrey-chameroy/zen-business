@@ -17,7 +17,12 @@ class InvoiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DateType::class)
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'date-picker'
+                ]
+            ])
             ->add('client', EntityType::class, [
                 'class' => 'AppBundle:Client',
                 'choice_label' => 'company'
@@ -28,9 +33,9 @@ class InvoiceType extends AbstractType
                 'prototype' => true,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'attr' => array(
-                    'class' => 'my-selector',
-                ),
+                'attr' => [
+                    'class' => 'form-collection',
+                ]
             ]);
     }
 

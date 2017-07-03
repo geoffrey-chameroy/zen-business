@@ -18,7 +18,12 @@ class QuotationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DateType::class)
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'date-picker'
+                ]
+            ])
             ->add('client', EntityType::class, [
                 'class' => 'AppBundle:Client',
                 'choice_label' => 'company'
