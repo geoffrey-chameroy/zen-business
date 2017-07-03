@@ -1,0 +1,5 @@
+model: AppBundle\Entity\User
+fixtures:
+    user_001:
+        email: test@test.fr
+        password: $2y$13$uEoDOgpqMfJd82zNrzgwPeZRSJepYT6St8CNVRi1WdEYAxeTBpE0e

@@ -8,7 +8,6 @@
 
         <link href="{{ asset('Material/css/animate.min.css') }}" rel="stylesheet">
         <link href="{{ asset('Material/css/font/iconic/material-design-iconic-font.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('Material/plugins/eonasdan-bootstrap-datetimepicker/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
         <link href="{{ asset('Material/css/app.min.css') }}" rel="stylesheet">
         <link href="{{ asset('Material/css/chrome-autofill.min.css') }}" rel="stylesheet">
 
@@ -18,23 +17,11 @@
     <body>
 
     {{ include('AppBundle:Layout:loader.html.twig') }}
-    {{ include('AppBundle:Layout:header.html.twig') }}
 
-    <section id="main">
-        {{ include('AppBundle:Layout:notifications.html.twig') }}
-        {{ include('AppBundle:Layout:navigation.html.twig') }}
-
-        {% block header '' %}
-        {% block body '' %}
-
-        {{ include('AppBundle:Layout:footer.html.twig') }}
-    </section>
+    {% block body '' %}
 
     <script src="{{ asset('Material/js/jquery-v2.1.4.min.js') }}"></script>
     <script src="{{ asset('Material/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('Material/plugins/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('Material/plugins/eonasdan-bootstrap-datetimepicker/bootstrap-datetimepicker.min.js') }}"></script>
-    <script src="{{ asset('Material/plugins/collection-form/jquery.collection.js') }}"></script>
     <script src="{{ asset('Material/js/app.min.js') }}"></script>
 
     {% block javascript '' %}
