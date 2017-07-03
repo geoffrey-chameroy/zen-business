@@ -17,14 +17,58 @@
         </div>
         <div class="card__body m-t-30">
             {{ form_start(form) }}
-            {{ form_row(form.civility) }}
-            {{ form_row(form.name) }}
-            {{ form_row(form.company) }}
-            {{ form_row(form.address.address) }}
-            {{ form_row(form.address.zipCode) }}
-            {{ form_row(form.address.city) }}
-            {{ form_row(form.address.country) }}
-            <button class="btn btn-default btn-block" type="submit">Ajouter</button>
+            <div class="row">
+                <div class="col-sm-1">
+                    <div class="form-group form-group--float">
+                        {{ form_widget(form.civility) }}
+                        {{ form_label(form.civility) }}
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-11">
+                    <div class="form-group form-group--float">
+                        {{ form_widget(form.name) }}
+                        {{ form_label(form.name) }}
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group form-group--float">
+                        {{ form_widget(form.company) }}
+                        {{ form_label(form.company) }}
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group form-group--float">
+                        {{ form_widget(form.address.address) }}
+                        {{ form_label(form.address.address) }}
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group form-group--float">
+                        {{ form_widget(form.address.zipCode) }}
+                        {{ form_label(form.address.zipCode) }}
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group form-group--float">
+                        {{ form_widget(form.address.city) }}
+                        {{ form_label(form.address.city) }}
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group form-group--float">
+                        {{ form_widget(form.address.country) }}
+                        {{ form_label(form.address.country) }}
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-default btn-block m-t-30" type="submit">Ajouter</button>
             {{ form_end(form) }}
         </div>
     </div>
