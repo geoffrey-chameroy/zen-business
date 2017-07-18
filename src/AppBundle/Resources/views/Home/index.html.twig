@@ -13,11 +13,99 @@
 {% block body %}
     <div class="card">
         <div class="card__header">
-            <h2>Card Title <small>Small description of the card</small></h2>
+            <h2>Chiffre d'affaires<small>3 dernières années</small></h2>
         </div>
 
         <div class="card__body">
-            <p>Hello World!</p>
+            <div id="chart-bar" class="flot-chart"></div>
+            <div class="flot-chart-legend flot-chart-legend--bar"></div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function(){
+            var barData = [
+                {
+                    label: '{{ sales[0].label }}',
+                    data: {{ sales[0].data|json_encode() }},
+                    color: '#415158',
+                    bars: { order: 0 }
+                }, {
+                    label: '{{ sales[1].label }}',
+                    data: {{ sales[1].data|json_encode() }},
+                    color: '#8a99a0',
+                    bars: { order: 1 }
+                }, {
+                    label: '{{ sales[2].label }}',
+                    data: {{ sales[2].data|json_encode() }},
+                    color: '#edeff0',
+                    bars: { order: 2 }
+                }
+            ];
+
+            // Let's create the chart
+            if ($('#chart-bar')[0]) {
+                $.plot($("#chart-bar"), barData, {
+                    series: {
+                        bars: {
+                            show: true,
+                            barWidth: 0.05,
+                            fill: 1
+                        }
+                    },
+                    grid : {
+                        borderWidth: 1,
+                        borderColor: '#31424b',
+                        show : true,
+                        hoverable : true
+                    },
+
+                    yaxis: {
+                        tickColor: '#31424b',
+                        tickDecimals: 0,
+                        font :{
+                            lineHeight: 13,
+                            style: "normal",
+                            color: "#98a7ac"
+                        },
+                        shadowSize: 0
+                    },
+
+                    xaxis: {
+                        tickColor: '#31424b',
+                        tickDecimals: 0,
+                        font :{
+                            lineHeight: 13,
+                            style: "normal",
+                            color: "#98a7ac"
+                        },
+                        shadowSize: 0
+                    },
+
+                    legend:{
+                        container: '.flot-chart-legend--bar',
+                        noColumns: 4
+                    }
+                });
+            }
+
+            // Tooltips for Flot Charts
+            if ($('.flot-chart')[0]) {
+                $('.flot-chart').bind('plothover', function (event, pos, item) {
+                    if (item) {
+                        var x = item.datapoint[0].toFixed(2),
+                            y = item.datapoint[1].toFixed(2);
+                        $('.flot-tooltip').html(y + '€').css({top: item.pageY+5, left: item.pageX+5}).show();
+                    }
+                    else {
+                        $(".flot-tooltip").hide();
+                    }
+                });
+
+                $("<div class='flot-tooltip'></div>").appendTo("body");
+            }
+        });
+    </script>
 {% endblock %}

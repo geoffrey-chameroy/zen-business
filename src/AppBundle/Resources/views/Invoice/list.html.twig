@@ -35,7 +35,7 @@
                             <td>{{ invoice.id }}</td>
                             <td>{{ invoice.date|date('d/m/Y') }}</td>
                             <td>{{ invoice.reference }}</td>
-                            <td>{{ invoice.client.company }}</td>
+                            <td>{% if invoice.client.company %}{{ invoice.client.company }}{% else %}{{ invoice.client.name }}{% endif %}</td>
                             <td class="text-right">{{ invoice.amount|number_format(2, ',', ' ') }} €</td>
                             <td class="text-right">
                                 <a class="btn btn--light">Détails</a>

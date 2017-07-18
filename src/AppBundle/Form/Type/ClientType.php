@@ -20,8 +20,8 @@ class ClientType extends AbstractType
                 'class' => 'AppBundle:Civility',
                 'choice_label' => 'code'
             ])
-            ->add('name', TextType::class)
-            ->add('company', TextType::class)
+            ->add('name', TextType::class, ['required' => false])
+            ->add('company', TextType::class, ['required' => false])
             ->add('address', AddressType::class);
     }
 

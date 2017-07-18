@@ -35,7 +35,7 @@
                             <td>{{ quotation.id }}</td>
                             <td>{{ quotation.date|date('d/m/Y') }}</td>
                             <td>{{ quotation.reference }}</td>
-                            <td>{{ quotation.client.company }}</td>
+                            <td>{% if quotation.client.company %}{{ quotation.client.company }}{% else %}{{ quotation.client.name }}{% endif %}</td>
                             <td class="text-right">{{ quotation.amount|number_format(2, ',', ' ') }} €</td>
                             <td class="text-right">
                                 <a class="btn btn--light">Détails</a>

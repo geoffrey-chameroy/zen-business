@@ -21,11 +21,25 @@ class InvoiceRepository extends EntityRepository
     {
         return $this->createQueryBuilder('i')
             ->where('i.date >= :min')
-            ->setParameter('min', $date->format('Y-01-01'))
+                ->setParameter('min', $date->format('Y-01-01'))
             ->andWhere('i.date <= :max')
-            ->setParameter('max', $date->format('Y-12-31'))
+                ->setParameter('max', $date->format('Y-12-31'))
             ->addOrderBy('i.numerous', 'DESC')
             ->setMaxResults(1)
-            ->getQuery()->getOneOrNullResult();
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function findByYear($year)
+    {
+        $date = new \DateTime($year . '-01-01');
+        return $this->createQueryBuilder('i')
+            ->where('i.date >= :min')
+                ->setParameter('min', $date->format('Y-01-01'))
+            ->andWhere('i.date <= :max')
+                ->setParameter('max', $date->format('Y-12-31'))
+            ->addOrderBy('i.date', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }

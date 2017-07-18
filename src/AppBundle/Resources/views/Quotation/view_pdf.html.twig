@@ -44,13 +44,21 @@
     <div class="col-4">
         <p>
             <strong>FACTURER À</strong>
-            <br>{{ quotation.client.civility.label ~ ' ' ~ quotation.client.name }}
+            {% if quotation.client.name %}
+                <br>{{ quotation.client.civility.code ~ ' ' ~ quotation.client.name }}
+            {% endif %}
             {% if quotation.client.company %}
                 <br>{{ quotation.client.company }}
             {% endif %}
-            <br>{{ quotation.client.address.address }}
-            <br>{{ quotation.client.address.zipCode ~ ' ' ~ quotation.client.address.city }}
-            <br>{{ quotation.client.address.country }}
+            {% if quotation.client.address.address %}
+                <br>{{ quotation.client.address.address }}
+            {% endif %}
+            {% if quotation.client.address.zipCode or quotation.client.address.city %}
+                <br>{{ quotation.client.address.zipCode ~ ' ' ~ quotation.client.address.city }}
+            {% endif %}
+            {% if quotation.client.address.country %}
+                <br>{{ quotation.client.address.country }}
+            {% endif %}
         </p>
     </div>
 </div>
